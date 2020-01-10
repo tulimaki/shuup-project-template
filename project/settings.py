@@ -235,3 +235,7 @@ SHUUP_ERROR_PAGE_HANDLERS_SPEC = [
 ]
 
 SHUUP_SIMPLE_SEARCH_LIMIT = 150
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
