@@ -15,7 +15,7 @@ BASE_DIR = root()
 
 DEBUG = env('DEBUG')
 
-env.read_env(os.path.join(BASE_DIR, 'shuup-project-template', '.env'))
+env.read_env(os.path.join(BASE_DIR, 'app', '.env'))
 
 SECRET_KEY = env('SECRET_KEY', default='xxx')
 
@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     # shuup
     'shuup.core',
     'shuup.admin',
-    'shuup.api',
+    'shuup_api',
+    'shuup_rest_api',
     'shuup.addons',
     'shuup.default_tax',
     'shuup.front',
@@ -199,7 +200,7 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'shuup.api.permissions.ShuupAPIPermission',
+        'shuup_api.permissions.ShuupAPIPermission',
     )
 }
 
