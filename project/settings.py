@@ -237,6 +237,8 @@ if aws_s3_region_name:
 aws_s3_host = env('AWS_S3_HOST', default=None)
 if aws_s3_host:
     AWS_S3_HOST = aws_s3_host
+
+# For local setup
 aws_s3_secure_urls_disabled = env('AWS_S3_SECURE_URLS_DISABLED', default=None)
 if aws_s3_secure_urls_disabled:
     AWS_S3_VERIFY = False
@@ -252,8 +254,3 @@ if AWS_STORAGE_BUCKET_NAME and AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
     STATICFILES_STORAGE = 'business_logic.storages.StaticStorage'
     MEDIAFILES_LOCATION = 'media'
     DEFAULT_FILE_STORAGE = 'business_logic.storages.MediaStorage'
-
-
-# Configure Django App for Heroku.
-# import django_heroku
-# django_heroku.settings(locals())
