@@ -5,7 +5,8 @@
 --find-links wheels
 
 babel==2.5.3              # via shuup
-boto==2.49.0
+boto3==1.11.0
+botocore==1.14.0          # via boto3, s3transfer
 cairocffi==0.9.0          # via cairosvg, weasyprint
 cairosvg==2.2.1           # via weasyprint
 certifi==2018.11.29       # via requests
@@ -38,6 +39,7 @@ django-storages==1.8.0
 django-timezone-field==2.1  # via shuup
 djangorestframework==3.5.4  # via django-parler-rest, django-rest-swagger, shuup, shuup-api
 djangorestframework-jwt==1.11.0  # via shuup-api
+docutils==0.15.2          # via botocore
 easy-thumbnails==2.5      # via django-filer
 entrypoints==0.2.3        # via keyring
 et-xmlfile==1.0.1         # via openpyxl
@@ -49,6 +51,7 @@ idna==2.8                 # via requests
 itypes==1.1.0             # via coreapi
 jdcal==1.4                # via openpyxl
 jinja2==2.8.1             # via coreschema, django-jinja, shuup
+jmespath==0.9.4           # via boto3, botocore
 jsonfield==2.0.2          # via shuup
 keyring==17.1.1           # via shuup
 keyrings.alt==3.1.1       # via shuup
@@ -62,12 +65,13 @@ psycopg2==2.8.4           # via django-heroku
 pycparser==2.19           # via cffi
 pyjwt==1.7.1              # via djangorestframework-jwt
 pyphen==0.9.5             # via weasyprint
-python-dateutil==2.7.5    # via shuup
+python-dateutil==2.7.5    # via botocore, shuup
 python-memcached==1.59
 pytz==2018.7              # via babel, django, django-timezone-field
 pyyaml==3.13              # via shuup-yaml
 raven==5.33.0
 requests==2.21.0
+s3transfer==0.3.0         # via boto3
 setuptools-gitver==1.1.0  # via shuup-yaml
 shuup==1.10.1
 shuup-api==1.0.0          # via shuup, shuup-rest-api
@@ -82,7 +86,7 @@ toml==0.10.0              # via shuup
 unicodecsv==0.14.1        # via shuup
 unidecode==1.0.23         # via django-filer
 uritemplate==3.0.0        # via coreapi
-urllib3==1.24.1           # via requests
+urllib3==1.24.1           # via botocore, requests
 weasyprint==44
 webencodings==0.5.1       # via html5lib, tinycss2
 whitenoise==5.0.1         # via django-heroku

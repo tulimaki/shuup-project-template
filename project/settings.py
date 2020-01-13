@@ -214,15 +214,7 @@ SWAGGER_SETTINGS = {
 if DEBUG:
     SWAGGER_SETTINGS["SUPPORTED_SUBMIT_METHODS"].extend(["post", "patch", "delete", "put"])
 
-SHUUP_SETUP_WIZARD_PANE_SPEC = [
-    "shuup.admin.modules.shops.views:ShopWizardPane",
-    "shuup.admin.modules.service_providers.views.PaymentWizardPane",
-    "shuup.admin.modules.service_providers.views.CarrierWizardPane",
-    "shuup.xtheme.admin_module.views.ThemeWizardPane",
-    "shuup.admin.modules.content.views.ContentWizardPane",
-    "shuup.admin.modules.sample_data.views.SampleObjectsWizardPane",
-    "shuup.admin.modules.system.views.TelemetryWizardPane"
-]
+SHUUP_SETUP_WIZARD_PANE_SPEC = []
 
 
 SHUUP_ERROR_PAGE_HANDLERS_SPEC = [
@@ -239,12 +231,18 @@ AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default=None)
 aws_custom_domain = env('AWS_S3_CUSTOM_DOMAIN', default=None)
 if aws_custom_domain:
     AWS_S3_CUSTOM_DOMAIN = aws_custom_domain
-aws_origin = env('AWS_ORIGIN', default=None)
-if aws_origin:
-    AWS_ORIGIN = aws_origin
-aws_s3_host_env = env('AWS_S3_HOST', default=None)
-if aws_s3_host_env:
-    AWS_S3_HOST = aws_s3_host_env
+aws_s3_region_name = env('AWS_S3_REGION_NAME', default=None)
+if aws_s3_region_name:
+    AWS_S3_REGION_NAME = aws_s3_region_name
+aws_s3_host = env('AWS_S3_HOST', default=None)
+if aws_s3_host:
+    AWS_S3_HOST = aws_s3_host
+aws_s3_secure_urls_disabled = env('AWS_S3_SECURE_URLS_DISABLED', default=None)
+if aws_s3_secure_urls_disabled:
+    AWS_S3_VERIFY = False
+
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
 
 if AWS_STORAGE_BUCKET_NAME and AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
     INSTALLED_APPS += (
