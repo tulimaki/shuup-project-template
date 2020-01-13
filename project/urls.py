@@ -12,4 +12,7 @@ urlpatterns = [
     url(r'^sa/', include('shuup.admin.urls', namespace="shuup_admin", app_name="shuup_admin")),
     url(r'^api/', include('shuup_api.urls')),
     url(r'^', include('shuup.front.urls', namespace="shuup", app_name="shuup")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

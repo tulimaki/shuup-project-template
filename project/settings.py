@@ -8,24 +8,20 @@ env = environ.Env(DEBUG=(bool, False))
 def optenv(var):
     return env(var, default=None)
 
-
-root = environ.Path(__file__) - 3
-
-BASE_DIR = root()
+BASE_DIR = os.path.realpath(os.path.join(os.path.dirname(__file__), '..', '..'))
+env.read_env(os.path.join(BASE_DIR, 'app', '.env'))
 
 DEBUG = env('DEBUG')
-
-env.read_env(os.path.join(BASE_DIR, 'app', '.env'))
 
 SECRET_KEY = env('SECRET_KEY', default='xxx')
 
 DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3')}
 
-MEDIA_URL = env('MEDIA_URL', default='/media/')
-STATIC_URL = env('STATIC_URL', default='/static/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'var', 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'var', 'static')
 
-MEDIA_ROOT = root(env('MEDIA_LOCATION', default=os.path.join(BASE_DIR, 'var', 'media')))
-STATIC_ROOT = root(env('STATIC_LOCATION', default=os.path.join(BASE_DIR, 'var', 'static')))
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
 
 SHUUP_HOME_CURRENCY = env('SHOP_CURRENCY', default='USD')
 
@@ -236,6 +232,30 @@ SHUUP_ERROR_PAGE_HANDLERS_SPEC = [
 
 SHUUP_SIMPLE_SEARCH_LIMIT = 150
 
+# AWS
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME', default=None)
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID', default=None)
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY', default=None)
+aws_custom_domain = env('AWS_S3_CUSTOM_DOMAIN', default=None)
+if aws_custom_domain:
+    AWS_S3_CUSTOM_DOMAIN = aws_custom_domain
+aws_origin = env('AWS_ORIGIN', default=None)
+if aws_origin:
+    AWS_ORIGIN = aws_origin
+aws_s3_host_env = env('AWS_S3_HOST', default=None)
+if aws_s3_host_env:
+    AWS_S3_HOST = aws_s3_host_env
+
+if AWS_STORAGE_BUCKET_NAME and AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+    INSTALLED_APPS += (
+        'storages',
+    )
+    STATICFILES_LOCATION = 'static'
+    STATICFILES_STORAGE = 'business_logic.storages.StaticStorage'
+    MEDIAFILES_LOCATION = 'media'
+    DEFAULT_FILE_STORAGE = 'business_logic.storages.MediaStorage'
+
+
 # Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())

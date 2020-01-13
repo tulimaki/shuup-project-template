@@ -5,6 +5,7 @@
 --find-links wheels
 
 babel==2.5.3              # via shuup
+boto==2.49.0
 cairocffi==0.9.0          # via cairosvg, weasyprint
 cairosvg==2.2.1           # via weasyprint
 certifi==2018.11.29       # via requests
@@ -33,6 +34,7 @@ django-polymorphic==2.0.3  # via django-filer, shuup
 django-registration-redux==1.8  # via shuup
 django-rest-swagger==2.1.2  # via shuup-api
 django-reversion==2.0.13  # via shuup
+django-storages==1.8.0
 django-timezone-field==2.1  # via shuup
 djangorestframework==3.5.4  # via django-parler-rest, django-rest-swagger, shuup, shuup-api
 djangorestframework-jwt==1.11.0  # via shuup-api
